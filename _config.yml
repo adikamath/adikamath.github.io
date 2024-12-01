@@ -6,22 +6,22 @@ lang: en-US # default lang
 timezone: America/Los_Angeles # set your timezone
 image: assets/img/ogp.png # This image used for Open Graph more info https://ogp.me/
 # repo: https://github.com/piharpi/jekyll-klise # site repo [optional]
-mode: light # default theme "dark" | "light"
+mode: "light" # default theme "dark" | "light"
 
 # Profile settings
 author:
   name: Aditya Kamath # author name
-  bio: >- # tell to the world
-    Welcome to my blog!
+  bio: "A collection of my reflections, musings and learnings"
   username: username # general username
-  github: github_username # github username
+  github: adikamath # github username
+  linkedin: adityagkamath #linkedin username
   twitter: twitter_username # twitter username
   facebook: facebook_username # facebook username
-  email: your-email@email.com # email adress
+  email: reachme@adityakamath.com # email adress
   avatar: /assets/img/avatar.jpg # change with your own avatar
 
 # URL settings
-url: "https://adikamath.github.io" #
+url: "https://adikamath.github.io" 
 baseurl:
 permalink: /:title/
 google_analytics: # leave it blank if not wish
