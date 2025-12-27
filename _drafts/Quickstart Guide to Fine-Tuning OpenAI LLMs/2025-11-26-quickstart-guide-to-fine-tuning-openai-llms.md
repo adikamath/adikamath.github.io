@@ -41,11 +41,11 @@ If you want a deeper comparison, this IBM article is a good reference: [RAG vs. 
 
 ## What You’ll Have by the End
 
-<!-- 3–5 bullet points describing the end state:
-     - A training + validation dataset in JSONL format
-     - A fine-tuned OpenAI model for <your task>
-     - A simple way to compare base vs fine-tuned model
-     - Links to the GitHub repo + notebooks. -->
+  - The process for preparing training and validation datasets in JSONL format for fine-tuning
+  - A fine-tuned OpenAI model you can use in the OpenAI Playground or via an API endpoint for emotion labeling
+  - A simple way to compare the base model versus the fine-tuned model on the same emotion labeling examples
+  - Links to the GitHub repo with the resources needed to replicate this end-to-end
+
 
 ---
 
