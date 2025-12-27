@@ -51,10 +51,22 @@ If you want a deeper comparison, this IBM article is a good reference: [RAG vs. 
 
 ## About the Dataset I Used
 
-<!-- Describe the dataset in a few sentences:
-     - Name/source (e.g., GoEmotions)
-     - What each row represents (comment, labels, etc.)
-     - Why you picked it for this experiment. -->
+This is an open-source dataset released by Google Research. In their own words, it is “a human-annotated dataset of 58k Reddit comments extracted from popular English-language subreddits and labeled with 27 emotion categories.” 
+
+Each example in the dataset consists of a Reddit comment paired with one or more labels representing predefined emotions. The figure below shows a few sample annotations, taken directly from the Google Research blog post. 
+
+<figure>
+  <img src="/assets/img/llm-fine-tuning-go-emotions/go-emotions-examples.png" alt="GoEmotions examples">
+  <figcaption>
+    Fig 1. Some examples of comments and emotion labels.
+    Reference:
+    <a href="https://research.google/blog/goemotions-a-dataset-for-fine-grained-emotion-classification/" target="_blank">
+      Google Research
+    </a>
+  </figcaption>
+</figure>
+
+You can read more about the dataset here: [GoEmotions: A Dataset for Fine-Grained Emotion Classification](https://research.google/blog/goemotions-a-dataset-for-fine-grained-emotion-classification/)
 
 ---
 
