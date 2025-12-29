@@ -15,8 +15,6 @@ image: /assets/img/llm-fine-tuning-go-emotions/fine-tuning-blog-title.jpg
 ---
 ## What Is LLM Fine-Tuning?
 
-What if you could teach a large language model (LLM) to perform better on the exact task you care about? That is where fine-tuning comes in.
-
 Fine-tuning is the process of taking a pre-trained LLM and adapting it to perform especially well on a narrow problem. With today’s ecosystem of models, from open-source options on Hugging Face to hosted models from OpenAI, Anthropic, and Google, most models are already capable out of the box. Fine-tuning pushes them further by training on examples that closely match the task and responses you care about.
 
 In this post, we fine-tune [GPT-3.5 Turbo](https://platform.openai.com/docs/models/gpt-3.5-turbo) to improve its performance on labeling text with emotion categories. You will see how a well fine-tuned and relatively inexpensive model can outperform more powerful alternatives when the task is clearly defined.
@@ -24,8 +22,6 @@ In this post, we fine-tune [GPT-3.5 Turbo](https://platform.openai.com/docs/mode
 ---
 
 ## When Does It Make Sense to Fine-Tune?
-
-There is no one-size-fits-all approach to improving model performance.
 
 **TL;DR:** Fine-tuning usually has higher upfront cost and setup time than prompt engineering or RAG, but it excels when you want more consistent behavior. This includes tighter control over style, output format, and reliability on a well-defined task.
 
@@ -45,7 +41,6 @@ If you want a deeper comparison, this IBM article is a good reference: [RAG vs. 
   - A fine-tuned OpenAI model you can use in the OpenAI Playground or via an API endpoint for emotion labeling
   - A simple way to compare the base model versus the fine-tuned model on the same emotion labeling examples
   - Links to the GitHub repo with the resources needed to replicate this end-to-end
-
 
 ---
 
@@ -72,12 +67,11 @@ You can read more about the dataset here: [GoEmotions: A Dataset for Fine-Graine
 
 ## Prerequisites
 
-Before jumping into the fine-tuning steps, here are the basics you'll need:
+Before you kick-off with this exercise, do the following: 
 
-- An OpenAI account and API key  
-- Basic familiarity with Python and Jupyter/iPython notebooks  
-- A dataset you can convert into a training + validation split  
-- (Optional) Access to my GitHub repo where all notebooks and scripts live  
+- Set up an account for yourself on the [OpenAI Platform](https://platform.openai.com/docs/overview) and create an API key for this project.
+- Clone and download the project's Github repo - [llm-finetuning-go-emotions](https://github.com/adikamath/llm-finetuning-go-emotions)
+- Set up a Python virtual environment locally and install required packages listed in [requirements.txt](https://github.com/adikamath/llm-finetuning-go-emotions/blob/main/requirements.txt)
 
 > **Reference:** I also followed parts of this excellent YouTube tutorial during my experiment:  
 > 🎥 [Fine-tuning tutorial by Adam Lucek](https://www.youtube.com/watch?v=GZ4W1nRw_Ac)
