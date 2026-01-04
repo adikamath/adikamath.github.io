@@ -17,7 +17,7 @@ image: /assets/img/llm-fine-tuning-go-emotions/fine-tuning-blog-title.jpg
 
 Fine-tuning is the process of taking a pre-trained LLM and adapting it to perform especially well on a narrow problem. With today’s ecosystem of models, from open-source options on Hugging Face to hosted models from OpenAI, Anthropic, and Google, most models are already capable out of the box. Fine-tuning pushes them further by training on examples that closely match the task and responses you care about.
 
-In this post, we fine-tune [GPT-3.5 Turbo](https://platform.openai.com/docs/models/gpt-3.5-turbo) to improve its performance on labeling text with emotion categories. You will see how a well fine-tuned and relatively inexpensive model can outperform more powerful alternatives when the task is clearly defined.
+In this post, we fine-tune [GPT-3.5 Turbo](https://platform.openai.com/docs/models/gpt-3.5-turbo){:target="_blank" rel="noopener noreferrer"} to improve its performance on labeling text with emotion categories. You will see how a well fine-tuned and relatively inexpensive model can outperform more powerful alternatives when the task is clearly defined.
  
 ---
 
@@ -31,7 +31,7 @@ Even though this post focuses on fine-tuning, in practice you will often get the
 2. **Retrieval-augmented generation (RAG):** Pull in the right external or internal context at runtime by retrieving relevant information from your data sources.
 3. **Fine-tuning:** Train on task-specific examples to “bake in” the behavior you want, especially for consistent formatting, tone, and accuracy.
 
-If you want a deeper comparison, this IBM article is a good reference: [RAG vs. fine-tuning vs. prompt engineering](https://www.ibm.com/think/topics/rag-vs-fine-tuning-vs-prompt-engineering#:~:text=Prompt%20engineering%20optimizes%20input%20prompts,relevant%20data%20for%20greater%20accuracy.)
+If you want a deeper comparison, this IBM article is a good reference: [RAG vs. fine-tuning vs. prompt engineering](https://www.ibm.com/think/topics/rag-vs-fine-tuning-vs-prompt-engineering#:~:text=Prompt%20engineering%20optimizes%20input%20prompts,relevant%20data%20for%20greater%20accuracy.){:target="_blank" rel="noopener noreferrer"}
 
 ---
 
@@ -61,7 +61,7 @@ Each example in the dataset consists of a Reddit comment paired with one or more
   </figcaption>
 </figure>
 
-You can read more about the dataset here: [GoEmotions: A Dataset for Fine-Grained Emotion Classification](https://research.google/blog/goemotions-a-dataset-for-fine-grained-emotion-classification/)
+You can read more about the dataset here: [GoEmotions: A Dataset for Fine-Grained Emotion Classification](https://research.google/blog/goemotions-a-dataset-for-fine-grained-emotion-classification/){:target="_blank" rel="noopener noreferrer"}
 
 ---
 
@@ -69,12 +69,12 @@ You can read more about the dataset here: [GoEmotions: A Dataset for Fine-Graine
 
 Before you kick-off with this exercise, do the following: 
 
-- Set up an account for yourself on the [OpenAI Platform](https://platform.openai.com/docs/overview) and create an API key for this project.
-- Clone and download the project's Github repo - [llm-finetuning-go-emotions](https://github.com/adikamath/llm-finetuning-go-emotions)
-- Set up a Python virtual environment locally and install required packages listed in [requirements.txt](https://github.com/adikamath/llm-finetuning-go-emotions/blob/main/requirements.txt)
+- Set up an account for yourself on the [OpenAI Platform](https://platform.openai.com/docs/overview){:target="_blank" rel="noopener noreferrer"} and create an API key for this project.
+- Clone and download the project's Github repo - [llm-finetuning-go-emotions](https://github.com/adikamath/llm-finetuning-go-emotions){:target="_blank" rel="noopener noreferrer"}
+- Set up a Python virtual environment locally and install required packages listed in [requirements.txt](https://github.com/adikamath/llm-finetuning-go-emotions/blob/main/requirements.txt){:target="_blank" rel="noopener noreferrer"}
 
 > **Reference:** I also followed parts of this excellent YouTube tutorial during my experiment:  
-> 🎥 [Fine-tuning tutorial by Adam Lucek](https://www.youtube.com/watch?v=GZ4W1nRw_Ac)
+> 🎥 [Fine-tuning tutorial by Adam Lucek](https://www.youtube.com/watch?v=GZ4W1nRw_Ac){:target="_blank" rel="noopener noreferrer"}
 
 ---
 
@@ -83,18 +83,71 @@ Before you kick-off with this exercise, do the following:
 <!-- Explain at a high level how you:
      - Loaded the dataset into a notebook
      - Did basic cleaning (dropping empty rows, normalizing labels)
-     - Split into train vs validation sets. -->
+     - Split into train vs validation sets. --> 
 
-**Notebook snapshot (data exploration)**
+- Using the HuggingFace `datasets` library, load the GoEmotions dataset into the notebook.
+- Select the first 1000 rows of the dataset. We'll later split this to create the training and validation datasets.
+- Manually create a label index and join it to the text comments. Once you have done that, this is how the dataset will look:
+  <figure>
+    <img src="/assets/img/llm-fine-tuning-go-emotions/joined_dataset.png" alt="Sample of text comments and their emotion labels">
+    <figcaption>Fig 2. A sampling of text comments and their respective emotion labels.</figcaption>
+  </figure>
+- Analyze the dataset to ensure that all emotion labels are present at least once (i.e., there are no missing labels).
+- Here’s the system prompt that I used in my project. Feel free to modify it and see how the performance changes in your case:
+  ```python
+  prompt_template = """
+  You are a highly intelligent emotion classification assistant.
+  You carefully read a comment, and label it with one or more pre-selected emotion labels to it.
+  The emotion labels are listed here:
+  {emotions}
+  Your output should be just the emotion label that you are applying to the comment, and if you
+  think there are multiple labels then output the labels separated by commas.
+  The comment to analyze is here: {comment}
+  """
+  ```
+  
+- Next create training and validation datasets in JSONL format. Each line in the JSONL files is one training/validation example. In the case of training, each example will contain the system prompt, the user prompt and the LLM response. See below for the template:
 
-![Notebook preview – exploring and cleaning the dataset](/assets/images/fine-tune-notebook-preview.png)
+```python
+training_example = {
+        "messages": [
+            {
+                "role": "system",
+                "content": f"You are a highly intelligent emotion classification assistant. You carefully read a comment, and label it with one or more pre-selected emotion labels to it. The emotion labels are listed here: {emotion_labels_str}.Your output should be just the emotion label that you are applying to the comment, and if you think there are multple labels then output the labels separated by commas."
+            },
+            {
+                "role": "user",
+                "content": f"Label the emotion of this comment: {row['comment']}"
+            },
+            {
+                "role": "assistant",
+                "content": row['emotion labels']
+            }
+        ]
+    }
+```
 
-<!-- Screenshot idea:
-     - A cropped Jupyter cell showing df.head() and maybe some basic cleaning steps. -->
+You can find the code in the **Creating training and validation datasets for fine-tuning OpenAI LLMs** section in the notebook.
 
----
+--- 
 
-## Step 2 – Validating the Dataset & Estimating Cost
+## Step 3 – LLM Setup & Performance Comparison 
+
+Now that you have your training and validation datasets prepared, go ahead and setup access to OpenAI LLMs using the API key that you created and then use [GPT-4o mini](https://platform.openai.com/docs/models/gpt-4o-mini){:target="_blank" rel="noopener noreferrer"} to generate labels for the first 100 examples. You can find all of the code in the **# LLM setup for performance comparison** section of the notebook. Here is an overview of all the steps in this section: 
+- Create a **.env** file in your project folder and paste your OpenAI API key here (be sure to secure this). 
+- Load your OpenAI API key into your environment variable and import the required OpenAI and LangChain libraries.
+- Initiliaze the GPT-4o mini model and use LangChain to create an inference chain (you'll use the prompt that you set up earlier as part of the inference chain).
+- Run inference on the first 100 examples of the dataset and then join the results back to the dataset. You should end up with something that looks like the dataset snapshot below. We'll come back to this later in the project.
+  <figure>
+    <img src="/assets/img/llm-fine-tuning-go-emotions/gpt4omini-preview.png" alt="Sample of text comments and their emotion labels">
+    <figcaption>Fig 3. A sample of GPT-4o mini generated emotion labels.</figcaption>
+  </figure>
+
+You'll notice at a glance that GPT-4o mini has a lot more emotion labels than the default/base-case labels that were part of the dataset.
+
+--- 
+
+## Step 4 – Validating the Dataset & Estimating Cost
 
 <!-- Describe:
      - How you validated the JSONL structure (e.g., simple checks in Python, or OpenAI’s file validation)
@@ -173,7 +226,7 @@ Before you kick-off with this exercise, do the following:
      - Compare the new model to the base model.
      Add a link to your GitHub repo here. -->
 
-> 🔗 **GitHub repo:** [llm-finetuning-go-emotions](https://github.com/adikamath/llm-finetuning-go-emotions)
+> 🔗 **GitHub repo:** [llm-finetuning-go-emotions](https://github.com/adikamath/llm-finetuning-go-emotions){:target="_blank" rel="noopener noreferrer"}
 
 ---
 
