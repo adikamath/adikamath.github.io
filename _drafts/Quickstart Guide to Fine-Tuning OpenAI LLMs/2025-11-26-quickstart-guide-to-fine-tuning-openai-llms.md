@@ -149,18 +149,9 @@ You'll notice at a glance that GPT-4o mini has a lot more emotion labels than th
 
 ## Step 4 – Validating the Dataset & Estimating Cost
 
-<!-- Describe:
-     - How you validated the JSONL structure (e.g., simple checks in Python, or OpenAI’s file validation)
-     - How you estimated token counts and rough training cost
-     - Any quick helper functions or sanity checks you ran. -->
+Before kicking off fine-tuning, you should run a quick validation pass to make sure the JSONL dataset is well-formed and doesn’t have any obvious issues, such as missing messages or examples that exceed token limits. This step also helps you estimate training cost by counting tokens and factoring in the number of epochs.
 
-**Validation and token stats snapshot**
-
-![Notebook preview – dataset validation and token estimate](/assets/images/fine-tune-validation-preview.png)
-
-<!-- Screenshot idea:
-     - Notebook cell printing token counts, number of examples, etc.
-     - Or an editor view with a valid JSONL snippet. -->
+This notebook ([finetune_dataset_validation.ipynb](https://github.com/adikamath/llm-finetuning-go-emotions/blob/main/finetune_dataset_validation.ipynb){:target="_blank" rel="noopener noreferrer"}) is meant to be a lightweight pre-flight check. Refer to this notebook and the linked [OpenAI cookbook](https://cookbook.openai.com/examples/chat_finetuning_data_prep){:target="_blank" rel="noopener noreferrer"} if you want to dig into the validation logic or cost calculations in more detail.
 
 ---
 
@@ -170,11 +161,27 @@ You'll notice at a glance that GPT-4o mini has a lot more emotion labels than th
      - Going to the Fine-tuning section in the OpenAI dashboard
      - Uploading train.jsonl and validation.jsonl
      - Selecting a base model
-     - Starting the fine-tuning job. Keep it high-level and friendly. -->
+     - Starting the fine-tuning job. Keep it high-level and friendly. --> 
 
-**OpenAI fine-tuning setup**
+This is where we get to the fun part of configuring and kicking off the fine-tuning job. 
 
-![OpenAI fine-tuning UI – file upload and model configuration](/assets/images/fine-tune-openai-ui-setup.png)
+- Sign into your OpenAI Platform account and then head to the **Fine-tuning** section. 
+- Click on the **+ Create** button to open up the fine-tuning job configuration form. 
+- Choose any latest available version of GPT-3.5 Turbo as the **Base Model**. 
+- Enter a value in the **Suffix** field like **llm-finetuning-go-emotions** that will be added into the name of the fine-tuned model to help you identify and differentiate the fine-tuned model.
+- Upload the training and validation datasets in JSONL format- **training_data.jsonl** and **validation_data.jsonl** respectively. 
+- Let all other fields have the default values and then click **Create** to queue and kick-off fine-tuning. 
+
+You can find my version if the file below. 
+
+<figure>
+    <img src="/assets/img/llm-fine-tuning-go-emotions/openai-ft-config1.png" alt="Sample of text comments and their emotion labels">
+  </figure>
+<figure>
+    <img src="/assets/img/llm-fine-tuning-go-emotions/openai-ft-config2.png" alt="Sample of text comments and their emotion labels">
+    <figcaption>Fig 4. Fine-tuning job configuration in the OpenAI Platform</figcaption>
+  </figure>
+
 
 <!-- Screenshot idea:
      - The fine-tuning creation screen showing file selection + base model. -->
