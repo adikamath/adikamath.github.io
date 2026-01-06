@@ -186,36 +186,20 @@ The job will go through some checks and validations and can be queued for a few 
 
 <figure>
     <img src="/assets/img/llm-fine-tuning-go-emotions/fine-tune-metrics.png" alt="Sample of text comments and their emotion labels">
-    <figcaption>Fig 5. Loss and accuracy charts seen after fine-tuning is complete.</figcaption>
+    <figcaption>Fig 5. Loss and accuracy charts after fine-tuning is complete.</figcaption>
   </figure>
 
 The loss chart is a rough measure of how wrong the model is (lower is better), while the accuracy chart shows how often it matches the expected output (higher is better). In this run, loss trends down and accuracy stays reasonably high, which is a good sign that the model is learning the task. These charts are mainly meant as a quick sanity check, and we won’t dive too deeply into them here.
-<!-- Screenshot idea:
-     - The fine-tuning creation screen showing file selection + base model. -->
-
-**Fine-tuning job status**
-
-![OpenAI fine-tuning UI – job status view](/assets/images/fine-tune-openai-ui-status.png)
-
-<!-- Screenshot idea:
-     - The dashboard showing the job queued/running/completed. -->
 
 ---
 
-## Step 4 – Testing and Comparing the Fine-Tuned Model
+## Step 4 – Testing and Comparing the Fine-Tuned Model 
 
-<!-- Explain how you:
-     - Grabbed the new fine-tuned model name from the UI
-     - Sent a few test prompts using a small Python script or notebook
-     - Compared base model vs fine-tuned responses (qualitatively or with simple metrics). -->
+Now that your fine-tuning job is complete, you can now begin using the fine-tuned model for your emotion labeling use-case. You can find the code for this in the **Fine-Tuned GPT 3.5 Turbo Comparison** section in the [dataset_preparation.ipynb](https://github.com/adikamath/llm-finetuning-go-emotions/blob/main/dataset_preparation.ipynb){:target="_blank" rel="noopener noreferrer"} notebook. Here is a quick overview: 
 
-**Comparison snapshot (optional)**
-
-![Notebook preview – comparing base vs fine-tuned responses](/assets/images/fine-tune-comparison-preview.png)
-
-<!-- Screenshot idea:
-     - A notebook cell where you print base vs fine-tuned outputs for a few examples.
-     - Even a simple text table is fine. -->
+- Grab the name of the fine-tuned model from the job details - it is called **Output model**. 
+- Use the same setup like you did previously to create an LLM inference chain. 
+- Run inference on the first 100 examples from the dataset to perform emotion labeling and then add the column back to the dataset. 
 
 ---
 
