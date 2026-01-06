@@ -189,7 +189,7 @@ The job will go through some checks and validations and can be queued for a few 
     <figcaption>Fig 5. Loss and accuracy charts seen after fine-tuning is complete.</figcaption>
   </figure>
 
-The loss chart is a rough measure of how wrong the model is (lower is better), while the accuracy chart shows how often it matches the expected output (higher is better). The curves are noisy between each step, so it’s best to focus on the overall trend and the validation points rather than individual fluctuations. In this run, loss trends down and accuracy stays reasonably high, which is a good sign that the model is learning the task. These charts are mainly meant as a quick sanity check, and we won’t dive too deeply into them here.
+The loss chart is a rough measure of how wrong the model is (lower is better), while the accuracy chart shows how often it matches the expected output (higher is better). In this run, loss trends down and accuracy stays reasonably high, which is a good sign that the model is learning the task. These charts are mainly meant as a quick sanity check, and we won’t dive too deeply into them here.
 <!-- Screenshot idea:
      - The fine-tuning creation screen showing file selection + base model. -->
 
