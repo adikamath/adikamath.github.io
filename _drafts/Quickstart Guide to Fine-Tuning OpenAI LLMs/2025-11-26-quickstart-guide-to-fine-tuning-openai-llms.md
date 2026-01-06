@@ -167,12 +167,12 @@ This is where we get to the fun part of configuring and kicking off the fine-tun
 
 - Sign into your OpenAI Platform account and then head to the **Fine-tuning** section. 
 - Click on the **+ Create** button to open up the fine-tuning job configuration form. 
-- Choose any latest available version of GPT-3.5 Turbo as the **Base Model**. 
+- Choose any latest available version of GPT-3.5 Turbo as the **Base Model** to fine-tune.
 - Enter a value in the **Suffix** field like **llm-finetuning-go-emotions** that will be added into the name of the fine-tuned model to help you identify and differentiate the fine-tuned model.
 - Upload the training and validation datasets in JSONL format- **training_data.jsonl** and **validation_data.jsonl** respectively. 
 - Let all other fields have the default values and then click **Create** to queue and kick-off fine-tuning. 
 
-You can find my version if the file below. 
+You can find my job configuration below.
 
 <figure>
     <img src="/assets/img/llm-fine-tuning-go-emotions/openai-ft-config1.png" alt="Sample of text comments and their emotion labels">
@@ -182,7 +182,14 @@ You can find my version if the file below.
     <figcaption>Fig 4. Fine-tuning job configuration in the OpenAI Platform</figcaption>
   </figure>
 
+The job will go through some checks and validations and can be queued for a few minutes and once it kicks off, you will be able to see the loss and accuracy metrics chart in real-time. After the job is completed, you will see something like the two charts below. 
 
+<figure>
+    <img src="/assets/img/llm-fine-tuning-go-emotions/fine-tune-metrics.png" alt="Sample of text comments and their emotion labels">
+    <figcaption>Fig 5. Loss and accuracy charts seen after fine-tuning is complete.</figcaption>
+  </figure>
+
+The loss chart is a rough measure of how wrong the model is (lower is better), while the accuracy chart shows how often it matches the expected output (higher is better). The curves are noisy between each step, so it’s best to focus on the overall trend and the validation points rather than individual fluctuations. In this run, loss trends down and accuracy stays reasonably high, which is a good sign that the model is learning the task. These charts are mainly meant as a quick sanity check, and we won’t dive too deeply into them here.
 <!-- Screenshot idea:
      - The fine-tuning creation screen showing file selection + base model. -->
 
