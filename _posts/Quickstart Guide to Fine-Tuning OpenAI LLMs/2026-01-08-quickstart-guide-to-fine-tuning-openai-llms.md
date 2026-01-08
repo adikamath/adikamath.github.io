@@ -1,18 +1,28 @@
 ---
 layout: post
 title: "Fine-Tuning OpenAI LLMs: A Quickstart Guide"
-date: 2025-12-13 14:01 -0700
-description: <enter description>
+date: 2026-01-07 10:45 -0700
 tag:
   - LLM
   - GenAI
   - fine-tuning
   - machine-learning 
-  - OpenAI 
+  - OpenAI
   - python
   
-image: /assets/img/llm-fine-tuning-go-emotions/fine-tuning-blog-title.jpg
 ---
+
+## What You’ll Build
+
+By the end of this walkthrough, you’ll have:
+
+- A repeatable process to prepare training and validation datasets in JSONL format for OpenAI fine-tuning.
+- A fine-tuned OpenAI model you can use in the Playground or via the API for emotion labeling.
+- A simple way to compare the base model and the fine-tuned model on the same emotion labeling examples.
+- A link to the GitHub repo with everything you need to run this end to end.
+
+---
+
 ## What Is LLM Fine-Tuning?
 
 Fine-tuning is the process of taking a pre-trained LLM and adapting it to perform especially well on a narrow problem. With today’s ecosystem of models, from open-source options on Hugging Face to hosted models from OpenAI, Anthropic, and Google, most models are already capable out of the box. Fine-tuning pushes them further by training on examples that closely match the task and responses you care about.
@@ -32,15 +42,6 @@ Even though this post focuses on fine-tuning, in practice you will often get the
 - **Fine-tuning:** Train on task-specific examples to “bake in” the behavior you want, especially for consistent formatting, tone, and accuracy.
 
 If you want a deeper comparison, this IBM article is a good reference: [RAG vs. fine-tuning vs. prompt engineering](https://www.ibm.com/think/topics/rag-vs-fine-tuning-vs-prompt-engineering#:~:text=Prompt%20engineering%20optimizes%20input%20prompts,relevant%20data%20for%20greater%20accuracy.){:target="_blank" rel="noopener noreferrer"}
-
----
-
-## What You’ll Have by the End
-
-  - The process for preparing training and validation datasets in JSONL format for fine-tuning.
-  - A fine-tuned OpenAI model you can use in the OpenAI Playground or via an API endpoint for emotion labeling.
-  - A simple way to compare the base model versus the fine-tuned model on the same emotion labeling examples.
-  - Links to the GitHub repo with the resources needed to replicate this end-to-end.
 
 ---
 
@@ -133,7 +134,6 @@ With the training and validation datasets ready, the next step is to set up acce
 - Load the API key into your environment and import the required OpenAI and LangChain libraries.
 - Initialize the [GPT-4o mini](https://platform.openai.com/docs/models/gpt-4o-mini){:target="_blank" rel="noopener noreferrer"} model and create an inference chain using LangChain, reusing the prompt defined earlier.
 - Run inference on the first 100 examples and join the generated labels back to the dataset. You should end up with something similar to the snapshot below—we’ll come back to this later in the project.
-
   <figure>
     <img src="/assets/img/llm-fine-tuning-go-emotions/gpt4omini-preview.png" alt="Sample of text comments and their emotion labels">
     <figcaption>Fig 3. A sample of GPT-4o mini generated emotion labels.</figcaption>
@@ -209,9 +209,7 @@ Now that your fine-tuning job is complete, you can now begin using the fine-tune
 
 ## How You Can Try This Yourself
 
-- 🔗 **GitHub repo:** For a quickstart, you can clone the repo and use the included training and validation datasets to jump straight into fine-tuning on OpenAI:  
+- 🔗 **GitHub repo:** For a quickstart, you can clone my GitHub repo and use the included training and validation datasets to jump straight into fine-tuning: 
   [llm-finetuning-go-emotions](https://github.com/adikamath/llm-finetuning-go-emotions){:target="_blank" rel="noopener noreferrer"}
 - 🎥 **Adam Lucek’s tutorial:** I also found this YouTube tutorial helpful while working through this experiment, especially for understanding the fine-tuning workflow end to end:  
-  [Fine-tuning tutorial by Adam Lucek](https://www.youtube.com/watch?v=GZ4W1nRw_Ac){:target="_blank" rel="noopener noreferrer"}
-
----
+  [Fine-tuning tutorial by Adam Lucek](https://www.youtube.com/watch?v=GZ4W1nRw_Ac){:target="_blank" rel="noopener noreferrer"} 
