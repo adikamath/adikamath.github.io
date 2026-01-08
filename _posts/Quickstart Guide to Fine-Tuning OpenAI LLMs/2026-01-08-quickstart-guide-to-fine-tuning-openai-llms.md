@@ -203,7 +203,7 @@ Now that your fine-tuning job is complete, you can now begin using the fine-tune
 
 - **Data prep dominated the effort:** Preparing and validating the dataset took significantly more time than the fine-tuning itself, which suggests there’s value in automating this step when the data format is predictable.
 - **The UI is good, but the workflow is fragmented:** The OpenAI Platform makes it easy to run and monitor fine-tuning jobs, but moving between local data prep, the UI, and post-fine tuning evaluation involved too many manual hops. An API-driven, end-to-end workflow would likely feel much smoother.
-- **Fine-tuning gives a strong lift, but there’s room to improve:** The ~40% accuracy gain over the base model is encouraging, but further gains may come from prompt iteration, clearer label definitions, or adding more targeted training examples.
+- **Fine-tuning gives a strong lift, but there’s room to improve:** The 42% accuracy gain over the base model is encouraging, but further gains may come from prompt iteration, clearer label definitions, or adding more targeted training examples.
 
 ---
 
