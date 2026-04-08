@@ -486,6 +486,15 @@
     display: block;
     color: $gray;
     opacity: 0.8;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 }
 
