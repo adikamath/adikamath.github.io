@@ -8,7 +8,7 @@ home: true
 {% if featured_post %}
 {% assign featured_summary = featured_post.description | default: featured_post.excerpt | strip_html | normalize_whitespace %}
 <section class="home-section">
-  <h2 class="posts-item-note" aria-label="Featured Post">Start Here</h2>
+  <h2 class="posts-item-note posts-item-note-featured" aria-label="Featured Post">Start Here</h2>
   <article class="featured-post">
     <p class="featured-post-label">Latest post</p>
     <h3 class="featured-post-title">
@@ -36,7 +36,7 @@ home: true
 {% endif %}
 
 <section class="home-section recent-writing">
-<h2 class="posts-item-note" aria-label="Recent Posts">Recent Writing</h2>
+<h2 class="posts-item-note posts-item-note-secondary" aria-label="Recent Posts">Recent Writing</h2>
 {%- for post in site.posts offset: 1 limit: site.number_of_posts -%}
 {% assign summary = post.description | default: post.excerpt | strip_html | normalize_whitespace %}
 <article class="post-item">

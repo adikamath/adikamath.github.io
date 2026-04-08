@@ -1,8 +1,3 @@
 <div class="author">
-  <img
-    class="author-avatar"
-    src="{{ site.author.avatar }}"
-    alt="Portrait of {{ site.author.name }}"
-  />
-  <h1 class="author-name">{{ site.author.bio }}</h1>
+  <h1 class="author-name">{{ site.author.headline | default: site.description }}</h1>
 </div>
