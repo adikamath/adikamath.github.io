@@ -38,7 +38,7 @@ description: Explore posts by topic and jump straight to the subjects covered ac
           <span>{{ post.content | number_of_words | plus: 224 | divided_by: site.reading_speed }} min read</span>
           {% if post.tags and post.tags != empty %}
           <span class="meta-separator">·</span>
-          <span>Tags:</span>
+          <span>tags:</span>
           {% for post_tag in post.tags %}
           {% assign display_name = post_tag | replace: "-", " " %}
           <a href="/tags/#{{ post_tag | slugify }}">{{ display_name }}</a>{% unless forloop.last %}, {% endunless %}
