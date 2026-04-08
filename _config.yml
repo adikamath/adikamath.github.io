@@ -1,7 +1,7 @@
 # Site settings
 title: Aditya Kamath # site title
 description: >- # site description
-  Notes on machine learning, GenAI, developer tools, and the web apps I build while learning.
+  Thoughts on technology, products, and learning.
 lang: en-US # default lang
 timezone: America/Los_Angeles # set your timezone
 image: /assets/img/og-card.png # This image used for Open Graph more info https://ogp.me/
@@ -11,7 +11,7 @@ mode: "dark"  # default theme "dark" | "light"
 # Profile settings
 author:
   name: Aditya Kamath # author name
-  bio: "My thoughts on technology, products, and learning."
+  bio: "Thoughts on technology, products, and learning."
   username: adikamath # general username
   github: adikamath # github username
   linkedin: adityagkamath #linkedin username
