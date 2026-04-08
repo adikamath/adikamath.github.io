@@ -273,6 +273,10 @@ body[data-theme="dark"] {
     .footer_copyright {
       color: $dark-gray;
       opacity: 1;
+
+      a {
+        color: inherit;
+      }
     }
   }
 
