@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "What I Learned This Week: Vector Search and AI Startups"
+title: "Weekly Notes: Vector Search and AI Startups"
 date: 2026-04-07 23:30 -0700
 modified: 2026-04-07 23:30 -0700
 description: A weekly reflection on billion-scale vector search infrastructure, AI agents, and how company building may be changing.
