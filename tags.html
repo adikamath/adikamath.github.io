@@ -1,27 +1,51 @@
 ---
-title: Tags
+title: Topics
 permalink: /tags/
 layout: page
-excerpt: Sorted article by tags.
+description: Explore posts by topic and jump straight to the subjects covered across the blog.
 ---
+
+<p class="page-intro">
+  Explore the subjects I write about most often and jump directly into each topic archive.
+</p>
 
 <div class="archive-tags">
   <a class="tag-item" href="#">all</a>
-  {%- for tag in site.tags -%} 
+  {%- assign sorted_tags = site.tags | sort -%}
+  {%- for tag in sorted_tags -%}
     {% capture name %}{{ tag | first }}{% endcapture %}
-    <a class="tag-item" href="#{{name}}">{{ name }}</a> 
+    {% assign display_name = name | replace: "-", " " %}
+    <a class="tag-item" href="#{{ name | slugify }}">{{ display_name }} <span class="tag-count">{{ tag | last | size }}</span></a>
   {%- endfor -%}
 </div>
 
-{%- for tag in site.tags -%}
+{%- for tag in sorted_tags -%}
   {%- capture name -%}{{ tag | first }}{%- endcapture -%}
-  <h2 id="{{ name }}">{{ name | upcase }}</h2>
+  {% assign display_name = name | replace: "-", " " %}
+  <h2 id="{{ name | slugify }}">{{ display_name }}</h2>
   {%- for post in site.tags[name] -%}
-    <article class="post-item" id="results-container">
-      <span class="post-item-date">{{ post.date | date: "%b %d, %Y" }}</span>
-      <h3 class="post-item-title">
-        <a href="{{ post.url }}">{{ post.title | escape }}</a>
-      </h3> 
+    {% assign summary = post.description | default: post.excerpt | strip_html | normalize_whitespace %}
+    <article class="post-item">
+      <time class="post-item-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d" }}</time>
+      <div class="post-item-content">
+        <h3 class="post-item-title">
+          <a href="{{ post.url }}">{{ post.title | escape }}</a>
+        </h3>
+        {% if summary != empty %}
+        <p class="post-item-description">{{ summary }}</p>
+        {% endif %}
+        <p class="post-item-meta">
+          <span>{{ post.content | number_of_words | plus: 224 | divided_by: site.reading_speed }} min read</span>
+          {% if post.tags and post.tags != empty %}
+          <span class="meta-separator">·</span>
+          <span>Tags:</span>
+          {% for post_tag in post.tags %}
+          {% assign display_name = post_tag | replace: "-", " " %}
+          <a href="/tags/#{{ post_tag | slugify }}">{{ display_name }}</a>{% unless forloop.last %}, {% endunless %}
+          {% endfor %}
+          {% endif %}
+        </p>
+      </div>
     </article>
   {%- endfor -%}
 {%- endfor -%}

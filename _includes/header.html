@@ -1,4 +1,11 @@
 <head prefix="og: http://ogp.me/ns#">
+  {% assign meta_title = page.title | default: site.title %}
+  {% assign meta_description = page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 200 | escape %}
+  {% assign social_image = page.image | default: site.image %}
+  {% assign is_post = false %}
+  {% if page.layout == "post" or page.collection == "posts" or page.date %}
+    {% assign is_post = true %}
+  {% endif %}
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -45,35 +52,34 @@
   {% endif %}
   <meta
     name="description"
-    content="{{
-      page.description
-        | default: site.description
-        | strip_html
-        | normalize_whitespace
-        | truncate: 200
-        | escape
-    }}"
+    content="{{ meta_description }}"
   />
   <meta name="referrer" content="no-referrer-when-downgrade" />
+  {% if site.fb_appid %}
   <meta property="fb:app_id" content="{{ site.fb_appid }}" />
+  {% endif %}
   <meta
     property="og:site_name"
-    content="{% if page.title %}{{ page.title | escape }} | {{
-      site.author.name
-    }}{% else %}{{ site.title | escape }}{% endif %}"
+    content="{{ site.title | escape }}"
   />
   <meta
     property="og:title"
-    content="{% if page.title %}{{ page.title | escape }} | {{
-      site.author.name
-    }}{% else %}{{ site.title | escape }}{% endif %}"
+    content="{{ meta_title | escape }}"
   />
-  {% if page.location %}
+  {% if is_post %}
   <meta property="og:type" content="article" />
-  <meta
-    property="article:publisher"
-    content="https://web.facebook.com/{{ site.author.facebook }}"
-  />
+  <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}" />
+  {% if page.modified %}
+  <meta property="article:modified_time" content="{{ page.modified | date_to_xmlschema }}" />
+  {% endif %}
+  {% if site.author.facebook %}
+  <meta property="article:publisher" content="https://web.facebook.com/{{ site.author.facebook }}" />
+  {% endif %}
+  {% if page.tags %}
+    {% for tag in page.tags %}
+  <meta property="article:tag" content="{{ tag }}" />
+    {% endfor %}
+  {% endif %}
   {% else %}
   <meta property="og:type" content="website" />
   {% endif %}
@@ -85,28 +91,14 @@
   />
   <meta
     property="og:description"
-    content="{{
-      page.description
-        | default: site.description
-        | strip_html
-        | normalize_whitespace
-        | truncate: 200
-        | escape
-    }}"
+    content="{{ meta_description }}"
   />
-  {% if page.image %}
-  <meta property="og:image" content="{{ page.image | absolute_url }}" />
-  {% else %}
-  <meta property="og:image" content="{{ site.image | absolute_url }}" />
-  {% endif %}
-  <meta property="og:image:width" content="640" />
-  <meta property="og:image:height" content="640" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="{{ social_image | absolute_url }}" />
+  <meta property="og:image:alt" content="{{ meta_title | escape }}" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta
     name="twitter:title"
-    content="{% if page.title %}{{ page.title | escape }} | {{
-      site.author.twitter
-    }}{% else %}{{ site.title | escape }}{% endif %}"
+    content="{{ meta_title | escape }}"
   />
   <meta
     name="twitter:url"
@@ -114,24 +106,16 @@
       page.url  | remove: 'index.html' | remove: '.html' | absolute_url
     }}"
   />
+  {% if site.author.twitter %}
   <meta name="twitter:site" content="@{{ site.author.twitter }}" />
   <meta name="twitter:creator" content="@{{ site.author.twitter }}" />
+  {% endif %}
   <meta
     name="twitter:description"
-    content="{{
-      page.description
-        | default: site.description
-        | strip_html
-        | normalize_whitespace
-        | truncate: 200
-        | escape
-    }}"
+    content="{{ meta_description }}"
   />
-  {% if page.image %}
-  <meta name="twitter:image" content="{{ page.image | absolute_url }}" />
-  {% else %}
-  <meta name="twitter:image" content="{{ site.image | absolute_url }}" />
-  {% endif %} {% feed_meta %}
+  <meta name="twitter:image" content="{{ social_image | absolute_url }}" />
+  {% feed_meta %}
   <link
     rel="apple-touch-icon"
     sizes="180x180"
@@ -155,10 +139,10 @@
     href="/assets/favicons/safari-pinned-tab.svg"
     color="#5bbad5"
   />
-  <meta name="apple-mobile-web-app-title" content="Jekyll Klise" />
-  <meta name="application-name" content="Jekyll Klise" />
+  <meta name="apple-mobile-web-app-title" content="{{ site.title }}" />
+  <meta name="application-name" content="{{ site.title }}" />
   <meta name="msapplication-TileColor" content="#da532c" />
-  <meta name="theme-color" content="#2c2c2c" />
+  <meta name="theme-color" content="#131418" />
 
   <link rel="stylesheet" href="/assets/css/style.css" />
 

@@ -4,7 +4,8 @@ title: Creating a simple web app with FastAPI and Streamlit
 date: 2025-01-17 10:45 -0700
 modified: 2025-01-17 10:45 -0700
 tags: [python, machine-learning]
-description: na
+description: A hands-on walkthrough for building a simple machine learning web app with FastAPI, Uvicorn, Streamlit, and a banknote classifier.
+image: /assets/img/img-creating-a-webapp-with-fast-api-and-streamlit/webapp-screenshot.png
 ---
 
 For a while now, I've wanted to learn how to create a web app to deploy machine learning models with API endpoints. Although there are easier ways to deploy models, I wanted build something from scratch. In this blog post, I use FastAPI and Streamlit to create a web app that deploys a machine learning model that Users can interact with. In my search online for material to learn from, I came across this [mini-series by Krish Naik](https://www.youtube.com/playlist?list=PLZoTAELRMXVPgsojPOHF9i0u2L83-m9P7){:target="_blank"} which this project is largely inspired by. I also went a step further and created a user interface for the webapp using Streamlit. 

@@ -1,22 +1,22 @@
 # Site settings
 title: Aditya Kamath # site title
 description: >- # site description
-  ABCD 1234
+  Notes on machine learning, GenAI, developer tools, and the web apps I build while learning.
 lang: en-US # default lang
 timezone: America/Los_Angeles # set your timezone
-image: assets/img/ogp.png # This image used for Open Graph more info https://ogp.me/
+image: /assets/img/og-card.png # This image used for Open Graph more info https://ogp.me/
 # repo: https://github.com/piharpi/jekyll-klise # site repo [optional]
 mode: "dark"  # default theme "dark" | "light"
 
 # Profile settings
 author:
   name: Aditya Kamath # author name
-  bio: "A collection of my reflections, musings and learnings"
-  username: username # general username
+  bio: "My thoughts on technology, products, and learning."
+  username: adikamath # general username
   github: adikamath # github username
   linkedin: adityagkamath #linkedin username
-  twitter: twitter_username # twitter username
-  facebook: facebook_username # facebook username
+  twitter: # twitter username
+  facebook: # facebook username
   email: reachme@adityakamath.com # email adress
   avatar: /assets/img/avatar.jpg # change with your own avatar
 
@@ -26,6 +26,7 @@ baseurl:
 permalink: /:title/
 google_analytics: G-31PF2J6N9Z
 fb_appid:
+reading_speed: 225
 
 # Collection setting
 collections:

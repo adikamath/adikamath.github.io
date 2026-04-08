@@ -2,12 +2,15 @@
 layout: post
 title: "Fine-Tuning OpenAI LLMs: A Quickstart Guide"
 date: 2026-01-07 10:45 -0700
-tag:
-  - LLM
-  - GenAI
+modified: 2026-01-07 10:45 -0700
+description: A practical quickstart for preparing data, fine-tuning an OpenAI model, and comparing base versus fine-tuned performance on emotion labeling.
+image: /assets/img/llm-fine-tuning-go-emotions/llm-performance-comparison.png
+tags:
+  - llm
+  - genai
   - fine-tuning
   - machine-learning 
-  - OpenAI
+  - openai
   - python
   
 ---
