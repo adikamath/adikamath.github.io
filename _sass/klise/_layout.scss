@@ -128,16 +128,6 @@
       opacity: 1;
     }
 
-    &.rss {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 5px 6px;
-
-      svg {
-        fill: currentColor;
-      }
-    }
   }
 
   .menu-link.active {
@@ -202,39 +192,19 @@
       font-size: 1.05em;
       padding: 3px 0;
 
-      &.rss {
-        padding: 3px 0;
-      }
     }
   }
 }
 
 // Author
 .author {
-  margin-top: 4.4rem;
-  margin-bottom: 2.9rem;
+  margin-top: 4.2rem;
+  margin-bottom: 3.6rem;
   text-align: center;
-  display: grid;
-  justify-items: center;
-  row-gap: 0.85rem;
 
   @include media-query($on-mobile) {
     margin-top: 3.2rem;
-    margin-bottom: 2.1rem;
-    row-gap: 0.7rem;
-  }
-
-  .author-avatar {
-    width: 72px;
-    height: 72px;
-    border-radius: 100%;
-    user-select: none;
-    background-color: $black;
-    -ms-user-select: none;
-    -webkit-user-select: none;
-    -webkit-animation: 0.5s ease-in forwards fadein;
-    animation: 0.5s ease-in forwards fadein;
-    opacity: 1;
+    margin-bottom: 2.8rem;
   }
 
   .author-eyebrow {
@@ -246,10 +216,27 @@
   }
 
   .author-name {
-    font-size: 2.1em;
-    line-height: 1.15;
-    max-width: 520px;
-    margin: 0;
+    color: $black;
+    font-size: clamp(2.2rem, 3.6vw, 2.85rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    width: fit-content;
+    max-width: none;
+    margin: 0 auto;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  @include media-query($on-mobile) {
+    .author-name {
+      font-size: clamp(2.15rem, 8vw, 2.6rem);
+      line-height: 1.08;
+      width: auto;
+      max-width: 14ch;
+      white-space: normal;
+      text-wrap: balance;
+    }
   }
 }
 
@@ -269,10 +256,19 @@
 }
 
 .posts-item-note {
-  font-size: $base-font-size;
-  font-weight: 700;
+  font-size: $small-font-size;
   margin-bottom: 16px;
-  color: $black;
+}
+
+.posts-item-note-featured {
+  color: $gray;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.posts-item-note-secondary {
+  color: $gray;
+  font-weight: 600;
 }
 
 .featured-post {
@@ -289,14 +285,14 @@
     margin: 0 0 8px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    font-size: $small-font-size - 1;
+    font-size: $small-font-size - 2;
     color: $gray;
   }
 
   .featured-post-title {
     margin: 0 0 10px;
-    font-size: 1.5em;
-    line-height: 1.2;
+    font-size: 1.35em;
+    line-height: 1.22;
 
     a {
       color: $black;
@@ -306,18 +302,20 @@
 
   .featured-post-description {
     margin: 12px 0 0;
+    font-size: 0.95rem;
+    line-height: 1.68;
   }
 
   .featured-post-meta {
     margin: 0;
     color: $gray;
-    font-size: $small-font-size;
+    font-size: $small-font-size - 1;
   }
 
   .featured-post-tags {
     margin: 12px 0 0;
     color: $gray;
-    font-size: $small-font-size;
+    font-size: $small-font-size - 1;
     line-height: 1.7;
 
     span {
