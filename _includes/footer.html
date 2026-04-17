@@ -46,10 +46,20 @@
         '</li>',
     });
 
-    if (searchInput && archiveList) {
+    if (searchInput) {
+      var params = new URLSearchParams(window.location.search);
+      var initialQuery = params.get('q');
+
+      if (initialQuery) {
+        searchInput.value = initialQuery;
+        searchInput.dispatchEvent(new Event('input'));
+      }
+
       searchInput.addEventListener('input', function (event) {
         var hasQuery = event.target.value.trim().length > 0;
-        archiveList.hidden = hasQuery;
+        if (archiveList) {
+          archiveList.hidden = hasQuery;
+        }
       });
     }
   </script>
