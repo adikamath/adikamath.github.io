@@ -11,6 +11,4 @@ If you are new here, a good place to start is the [archive](/archive/) for every
 
 **How you can reach me**
 
-- [Email](mailto:reachme@adityakamath.com)
-- [LinkedIn](https://www.linkedin.com/in/adityagkamath/){:target="_blank" rel="noopener noreferrer"}
-- [GitHub](https://github.com/adikamath){:target="_blank" rel="noopener noreferrer"}
+{% include social-icons.html context="about" %}
