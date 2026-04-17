@@ -1,0 +1,111 @@
+{% assign social_context = include.context | default: "default" %}
+
+{% assign github_url = site.author.github | default: "" %}
+{% if github_url != "" %}
+  {% unless github_url contains "://" %}
+  {% assign github_url = "https://github.com/" | append: github_url %}
+  {% endunless %}
+{% endif %}
+
+{% assign linkedin_url = site.author.linkedin | default: "" %}
+{% if linkedin_url != "" %}
+  {% unless linkedin_url contains "://" %}
+  {% assign linkedin_url = "https://www.linkedin.com/in/" | append: linkedin_url | append: "/" %}
+  {% endunless %}
+{% endif %}
+
+{% assign twitter_url = site.author.twitter | default: "" %}
+{% if twitter_url != "" %}
+  {% unless twitter_url contains "://" %}
+  {% assign twitter_url = "https://twitter.com/" | append: twitter_url %}
+  {% endunless %}
+{% endif %}
+
+{% assign facebook_url = site.author.facebook | default: "" %}
+{% if facebook_url != "" %}
+  {% unless facebook_url contains "://" %}
+  {% assign facebook_url = "https://facebook.com/" | append: facebook_url %}
+  {% endunless %}
+{% endif %}
+
+{% assign website_url = site.author.website | default: "" %}
+{% assign email_address = site.author.email | default: "" %}
+
+<nav class="social-links social-links--{{ social_context }}" aria-label="Social links">
+  <ul class="social-links__list">
+    {% if twitter_url != "" %}
+    <li class="social-links__item">
+      <a class="social-links__link" href="{{ twitter_url }}" target="_blank" rel="noopener noreferrer me" title="Twitter/X">
+        <span class="sr-only">Twitter/X</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18.244 2H21.5l-7.11 8.128L22.75 22h-6.545l-5.125-6.698L5.22 22H1.96l7.605-8.692L1.55 2h6.708l4.633 6.14L18.244 2Zm-1.144 18.06h1.804L7.271 3.835H5.335L17.1 20.06Z"/>
+        </svg>
+      </a>
+    </li>
+    {% endif %}
+
+    {% if github_url != "" %}
+    <li class="social-links__item">
+      <a class="social-links__link" href="{{ github_url }}" target="_blank" rel="noopener noreferrer me" title="GitHub">
+        <span class="sr-only">GitHub</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2C6.475 2 2 6.588 2 12.25c0 4.528 2.864 8.368 6.838 9.724.5.097.687-.223.687-.496 0-.245-.01-1.051-.015-1.905-2.782.62-3.37-1.216-3.37-1.216-.455-1.183-1.11-1.498-1.11-1.498-.908-.637.069-.624.069-.624 1.004.073 1.531 1.056 1.531 1.056.892 1.566 2.34 1.114 2.91.852.09-.666.35-1.114.637-1.37-2.221-.261-4.555-1.14-4.555-5.073 0-1.121.39-2.038 1.03-2.756-.103-.261-.447-1.314.097-2.74 0 0 .84-.276 2.75 1.053A9.303 9.303 0 0 1 12 6.84c.85.004 1.706.117 2.505.344 1.908-1.33 2.747-1.054 2.747-1.054.546 1.427.202 2.48.1 2.741.64.718 1.028 1.635 1.028 2.756 0 3.942-2.338 4.808-4.565 5.064.359.321.679.951.679 1.918 0 1.385-.013 2.501-.013 2.842 0 .275.184.598.692.496C19.14 20.615 22 16.776 22 12.25 22 6.588 17.523 2 12 2Z"/>
+        </svg>
+      </a>
+    </li>
+    {% endif %}
+
+    {% if linkedin_url != "" %}
+    <li class="social-links__item">
+      <a class="social-links__link" href="{{ linkedin_url }}" target="_blank" rel="noopener noreferrer me" title="LinkedIn">
+        <span class="sr-only">LinkedIn</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4.98 3.5A2.49 2.49 0 0 0 2.5 6a2.49 2.49 0 0 0 2.48 2.5A2.5 2.5 0 1 0 4.98 3.5ZM2.8 9.95h4.35V21H2.8V9.95ZM9.8 9.95V21h4.34v-5.8c0-1.53.29-3.02 2.16-3.02 1.84 0 1.87 1.72 1.87 3.11V21h4.35v-6.55c0-3.22-.69-5.7-4.45-5.7-1.8 0-3 .98-3.5 1.92h-.05v-1.72H9.8Z"/>
+        </svg>
+      </a>
+    </li>
+    {% endif %}
+
+    {% if facebook_url != "" %}
+    <li class="social-links__item">
+      <a class="social-links__link" href="{{ facebook_url }}" target="_blank" rel="noopener noreferrer me" title="Facebook">
+        <span class="sr-only">Facebook</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M13.5 22v-8.2h2.76l.42-3.2H13.5V8.56c0-.93.26-1.56 1.6-1.56h1.7V4.15c-.3-.04-1.31-.13-2.49-.13-2.47 0-4.16 1.5-4.16 4.27v2.37H7.34v3.2h2.8V22h3.36Z"/>
+        </svg>
+      </a>
+    </li>
+    {% endif %}
+
+    {% if email_address != "" %}
+    <li class="social-links__item">
+      <a class="social-links__link" href="mailto:{{ email_address }}" rel="me" title="Email">
+        <span class="sr-only">Email</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 6.75A1.75 1.75 0 0 1 4.75 5h14.5A1.75 1.75 0 0 1 21 6.75v10.5A1.75 1.75 0 0 1 19.25 19H4.75A1.75 1.75 0 0 1 3 17.25V6.75Zm1.5.36v.03l7.13 4.66a.65.65 0 0 0 .74 0l7.13-4.66v-.03a.25.25 0 0 0-.25-.25H4.75a.25.25 0 0 0-.25.25Zm15 1.78-6.3 4.12a2.15 2.15 0 0 1-2.4 0L4.5 8.89v8.36c0 .14.11.25.25.25h14.5a.25.25 0 0 0 .25-.25V8.89Z"/>
+        </svg>
+      </a>
+    </li>
+    {% endif %}
+
+    {% if website_url != "" %}
+    <li class="social-links__item">
+      <a class="social-links__link" href="{{ website_url }}" target="_blank" rel="noopener noreferrer me" title="Website">
+        <span class="sr-only">Website</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm7.77 9H16.9a15.9 15.9 0 0 0-1.1-5.12A8.52 8.52 0 0 1 19.77 11ZM12 4.3c1.05 1.34 1.9 3.84 2.08 6.7H9.92C10.1 8.14 10.95 5.64 12 4.3ZM4.23 13H7.1c.14 1.82.53 3.54 1.1 5.12A8.52 8.52 0 0 1 4.23 13Zm2.87-2H4.23a8.52 8.52 0 0 1 3.97-5.12A15.9 15.9 0 0 0 7.1 11Zm1.5 2h6.8c-.19 2.86-1.03 5.36-2.09 6.7-1.05-1.34-1.89-3.84-2.08-6.7Zm0-2c.19-2.86 1.03-5.36 2.08-6.7 1.06 1.34 1.9 3.84 2.09 6.7H8.6Zm7.2 2h2.87a8.52 8.52 0 0 1-3.97 5.12c.57-1.58.96-3.3 1.1-5.12Z"/>
+        </svg>
+      </a>
+    </li>
+    {% endif %}
+
+    <li class="social-links__item">
+      <a class="social-links__link" href="/feed.xml" title="RSS Feed">
+        <span class="sr-only">RSS Feed</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 18a1.75 1.75 0 1 0 0 3.5A1.75 1.75 0 0 0 5 18Zm-2-8.5V13a8.5 8.5 0 0 1 8.5 8.5H15C15 14.6 9.4 9 3 9.5Zm0-6V7a14.5 14.5 0 0 1 14.5 14.5H21C21 11.28 12.72 3 3 3.5Z"/>
+        </svg>
+      </a>
+    </li>
+  </ul>
+</nav>

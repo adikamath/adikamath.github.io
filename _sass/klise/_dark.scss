@@ -195,6 +195,60 @@ body[data-theme="dark"] {
     color: #f3f1ec;
   }
 
+  .social-links {
+    .social-links__link {
+      color: $dark-white;
+      border-color: rgba(234, 234, 234, 0.2);
+      background-color: rgba(255, 255, 255, 0.05);
+
+      &:hover,
+      &:focus-visible {
+        color: $dark-white;
+        border-color: rgba(234, 234, 234, 0.38);
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    &.social-links--hero {
+      .social-links__link {
+        border-color: transparent;
+        background-color: transparent;
+
+        &:hover,
+        &:focus-visible {
+          border-color: transparent;
+          background-color: transparent;
+        }
+      }
+    }
+
+    &.social-links--about {
+      .social-links__link {
+        border-color: transparent;
+        background-color: transparent;
+
+        &:hover,
+        &:focus-visible {
+          border-color: transparent;
+          background-color: transparent;
+        }
+      }
+    }
+
+    &.social-links--footer {
+      .social-links__link {
+        border-color: transparent;
+        background-color: transparent;
+
+        &:hover,
+        &:focus-visible {
+          border-color: transparent;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
   .posts-item-note-featured {
     color: $dark-gray;
   }
