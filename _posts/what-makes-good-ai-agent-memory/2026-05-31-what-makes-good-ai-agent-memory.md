@@ -6,11 +6,12 @@ modified: 2026-05-31 16:27 -0700
 description: Reflecting on AI agent memory, context quality, and what makes memory useful, trustworthy, and user-controlled.
 tags:
   - ai-agents
+  - agent-memory
   - machine-learning
   - genai
 ---
 
-This post is adapted from something I originally shared on LinkedIn. It was prompted by an interesting weekend read from the [Wall Street Journal](https://www.wsj.com/tech/ai/ai-memory-cd1de7f4?st=qBHU4k&reflink=article_imessage_share){:target="_blank" rel="noopener noreferrer"} that got me thinking more about AI agent memory, a topic I've also been thinking about a lot in my work recently.
+This post is adapted from something I originally shared on [LinkedIn](https://www.linkedin.com/posts/adityagkamath_your-chatbot-has-a-long-memory-that-isn-share-7464815548363771905-6ng1/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAoS7x4BuuPvs2QO9MQe_EOmFtVaSu26tww){:target="_blank" rel="noopener noreferrer"}. It was prompted by an interesting weekend read from the [Wall Street Journal](https://www.wsj.com/tech/ai/ai-memory-cd1de7f4?st=qBHU4k&reflink=article_imessage_share){:target="_blank" rel="noopener noreferrer"} that got me thinking more about AI agent memory, a topic I've also been thinking about a lot in my work recently.
 
 Agents are increasingly moving into more of our personal and professional workflows. And for agents, context is everything!
 
