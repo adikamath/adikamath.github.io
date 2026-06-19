@@ -7,7 +7,7 @@ layout: compress
 
 {% include header.html %}
 
-<body data-theme="{{ site.mode }}" class="notransition">
+<body data-theme="{{ site.mode }}" data-toc-enabled="{% if page.toc == false %}false{% else %}true{% endif %}" class="notransition">
 
   <script>
     const body = document.body;
@@ -69,7 +69,9 @@ layout: compress
           {% endif %}
         </header>
 
+        {% unless page.toc == false %}
         <aside id="post-toc" class="post-toc" hidden aria-label="Table of contents"></aside>
+        {% endunless %}
 
         <div class="page-content" itemprop="articleBody">
           {% include anchor_headings.html html=content anchorClass="anchor-head" beforeHeading=true h_min=1 h_max=4 %}

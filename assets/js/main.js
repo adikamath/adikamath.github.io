@@ -81,8 +81,10 @@
 
   const toc = document.getElementById("post-toc");
   const articleBody = document.querySelector('[itemprop="articleBody"]');
+  const tocEnabled =
+    document.body.getAttribute("data-toc-enabled") !== "false";
 
-  if (toc && articleBody) {
+  if (toc && articleBody && tocEnabled) {
     const headings = Array.from(articleBody.querySelectorAll("h2, h3")).filter(
       (heading) => heading.id
     );
